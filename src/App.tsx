@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import Practice from './pages/Practice';
+import Categories from './pages/Categories';
+import Category from './pages/Category';
+import Guide from './pages/Guide';
+import ExamHistory from './pages/ExamHistory';
+import Exam from './pages/Exam';
+import ExamResultPage from './pages/ExamResultPage';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-50">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/practice" element={<Practice />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/category/:id" element={<Category />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="/exam" element={<ExamHistory />} />
+            <Route path="/exam/start" element={<Exam />} />
+            <Route path="/exam/results/:id" element={<ExamResultPage />} />
+          </Routes>
+          <Navigation />
+        </div>
+      </Router>
+    </AppProvider>
   );
-}
+};
 
 export default App;
