@@ -12,9 +12,11 @@ import Exam from './pages/Exam';
 import ExamResultPage from './pages/ExamResultPage';
 
 const App: React.FC = () => {
+  const basename = process.env.PUBLIC_URL;
+
   return (
     <AppProvider>
-      <Router>
+      <Router basename={basename}>
         <div className="min-h-screen bg-gray-50">
           <Routes>
             <Route path="/" element={<Home />} />
